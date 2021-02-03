@@ -25,6 +25,12 @@ class HomePage extends Component {
     if (form.checkValidity() === false) {
       e.stopPropagation();
     } else {
+      if (this.state.job === "") {
+        this.setState({ job: "Any Position" });
+      }
+      if (this.state.location === "") {
+        this.setState({ location: "Any Location" });
+      }
       this.fetchJobs();
     }
     this.setState({ validated: true });
@@ -55,7 +61,6 @@ class HomePage extends Component {
           >
             <Form.Group controlId="formJobTitle">
               <Form.Control
-                required
                 type="text"
                 placeholder="Job Title"
                 value={this.state.job}
@@ -67,7 +72,6 @@ class HomePage extends Component {
             </Form.Group>
             <Form.Group controlId="formJobLocation">
               <Form.Control
-                required
                 type="text"
                 placeholder="Location"
                 value={this.state.location}
