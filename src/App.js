@@ -8,27 +8,12 @@ import HomePage from "./components/HomePage";
 import DetailPage from "./components/DetailPage";
 
 class App extends React.Component {
-  state = {
-    job: {},
-  };
-
-  getJob = (job) => {
-    this.setState({ job: job });
-  };
-
   render() {
     return (
       <Container className="App h-100">
         <NavBar />
-        <Route
-          path="/"
-          exact
-          render={(props) => <HomePage {...props} getJob={this.getJob} />}
-        />
-        <Route
-          path="/details/"
-          render={(props) => <DetailPage {...props} job={this.state.job} />}
-        />
+        <Route path="/" exact render={(props) => <HomePage {...props} />} />
+        <Route path="/details/" render={(props) => <DetailPage {...props} />} />
       </Container>
     );
   }

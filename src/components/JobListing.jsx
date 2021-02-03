@@ -1,17 +1,27 @@
 import React, { Component } from "react";
 import { Card, Button } from "react-bootstrap";
 import { withRouter } from "react-router-dom";
+import { connect } from "react-redux";
+
+const mapStateToProps = (state) => state;
+
+const mapDispatchToProps = (dispatch) => ({
+  selectThisJob: (job) =>
+    dispatch({
+      type: "SELECT_SINGLE_JOB",
+      payload: job,
+    }),
+});
 
 class JobListing extends Component {
   handleSubmit = (e) => {
     e.preventDefault();
-    this.props.getJob(this.props.job);
+    this.props.selectThisJob(this.props.job);
     this.props.history.push("/details/");
   };
   render() {
     return (
       <Card className="w-100 text-center">
-        {console.log(this.props.top)}
         <Card.Img
           variant="top"
           className="p-2"
@@ -31,4 +41,6 @@ class JobListing extends Component {
   }
 }
 
-export default withRouter(JobListing);
+export default withRouter(
+  connect(mapStateToProps, mapDispatchToProps)(JobListing)
+);

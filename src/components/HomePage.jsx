@@ -1,13 +1,23 @@
 import React, { Component } from "react";
 import { Row, Col, Form, Button, CardColumns } from "react-bootstrap";
 import JobListing from "./JobListing";
+import { connect } from "react-redux";
 
-export default class HomePage extends Component {
+const mapStateToProps = (state) => state;
+
+const mapDispatchToProps = (dispatch) => ({
+  populateJobList: (jobList) =>
+    dispatch({
+      type: "POPULATE_JOB_LIST",
+      payload: jobList,
+    }),
+});
+
+class HomePage extends Component {
   state = {
     job: "",
     location: "",
     validated: false,
-    jobList: [],
   };
   handleSubmit = (e) => {
     e.preventDefault();
@@ -26,7 +36,7 @@ export default class HomePage extends Component {
         `https://yabba-dabba-duls-cors-anywhere.herokuapp.com/https://jobs.github.com/positions.json?description=${this.state.job}&location=${this.state.location}`
       );
       let jobList = await response.json();
-      this.setState({ jobList: jobList });
+      this.props.populateJobList(jobList);
       console.log(jobList);
     } catch (error) {
       console.log(error);
@@ -36,7 +46,7 @@ export default class HomePage extends Component {
   render() {
     return (
       <Row className="homepage">
-        <Col xs={6} className="formCol">
+        <Col xs={12} lg={6} className="formCol">
           <Form
             noValidate
             validated={this.state.validated}
@@ -70,21 +80,20 @@ export default class HomePage extends Component {
               </Form.Control.Feedback>
             </Form.Group>
 
-            <Button variant="primary" className="submitJob w-100" type="submit">
+            <Button
+              variant="primary"
+              className="submitJob w-100 mb-5"
+              type="submit"
+            >
               Search for your new job
             </Button>
           </Form>
         </Col>
-        <Col xs={6} className="listCol">
+        <Col xs={12} lg={6} className="listCol">
           <CardColumns className="w-100">
-            {this.state.jobList.length > 0 &&
-              this.state.jobList.map((job, index) => (
-                <JobListing
-                  job={job}
-                  top={index}
-                  key={index}
-                  getJob={this.props.getJob}
-                />
+            {this.props.jobList &&
+              this.props.jobList.map((job, index) => (
+                <JobListing job={job} key={index} />
               ))}
           </CardColumns>
         </Col>
@@ -101,3 +110,5 @@ export default class HomePage extends Component {
     );
   }
 }
+
+export default connect(mapStateToProps, mapDispatchToProps)(HomePage);
