@@ -44,7 +44,7 @@ class DetailPage extends Component {
                     this.props.unFavouriteJob(this.props.selectedJob.id)
                   }
                 >
-                  <AiFillStar className="ml-2" fill="#4a82b9" />
+                  <AiFillStar className="ml-2" s fill="#4a82b9" />
                 </span>
               ) : (
                 <span
@@ -52,7 +52,11 @@ class DetailPage extends Component {
                     this.props.favouriteJob(this.props.selectedJob)
                   }
                 >
-                  <AiOutlineStar className="ml-2" fill="#4a82b9" />
+                  <AiOutlineStar
+                    className="ml-2"
+                    tyle={{ cursor: "pointer" }}
+                    fill="#4a82b9"
+                  />
                 </span>
               )}
             </h4>

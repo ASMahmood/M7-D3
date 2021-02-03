@@ -5,14 +5,6 @@ import { connect } from "react-redux";
 
 const mapStateToProps = (state) => state;
 
-const mapDispatchToProps = (dispatch) => ({
-  unFavouriteJob: (id) =>
-    dispatch({
-      type: "REMOVE_FROM_FAVOURITES",
-      payload: id,
-    }),
-});
-
 class Favourites extends Component {
   render() {
     return (
@@ -39,4 +31,4 @@ class Favourites extends Component {
   }
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(Favourites);
+export default connect(mapStateToProps)(Favourites);

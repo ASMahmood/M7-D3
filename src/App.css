@@ -109,3 +109,12 @@ input {
 .jobTitle {
   color: #4a82b9;
 }
+.favIcon {
+  position: absolute;
+  font-size: 30px;
+  top: 0px;
+  right: 10px;
+}
+.favIcon:hover {
+  cursor: pointer;
+}
