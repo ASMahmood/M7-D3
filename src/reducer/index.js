@@ -20,9 +20,9 @@ export default function (state = initialState, action) {
     case "REMOVE_FROM_FAVOURITES":
       return {
         ...state,
-        favouriteJobList: [
-          ...state.favouriteJobList.filter((job) => job.id !== action.payload),
-        ],
+        favouriteJobList: state.favouriteJobList.filter(
+          (job) => job.id !== action.payload
+        ),
       };
     default:
       return state;

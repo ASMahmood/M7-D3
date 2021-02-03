@@ -77,8 +77,30 @@ input {
 .blueNav {
   position: fixed;
   top: 0;
-  z-index: 10;
+
+  z-index: 15;
   background-color: #f8f8f8;
+}
+.favNav {
+  background-color: transparent;
+  color: #0a66c2;
+  border: #0a66c2 solid 1px;
+  border-radius: 100px;
+  font-weight: 500;
+  font-size: 16px;
+  padding: 5px 22px;
+}
+.favNav:hover {
+  background-color: rgba(10, 102, 194, 0.2);
+  color: #0a66c2;
+  border: #0a66c2 solid 1px;
+}
+.favNav:focus,
+.favNav:active {
+  background-color: rgba(10, 102, 194, 0.4) !important;
+  color: #0a66c2 !important;
+  box-shadow: none !important;
+  border: #0a66c2 solid 1px;
 }
 .jobTitleCard {
   font-size: 16px;
